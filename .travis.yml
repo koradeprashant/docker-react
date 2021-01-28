@@ -8,3 +8,17 @@ before_install:
 
 script:
   - docker run -e CI=true pash04/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-462623432869"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $aws-access-key
+  secret_access_key: $aws-secret-key
+
+    
